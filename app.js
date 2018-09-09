@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', function(req, res) {
   exec("casperjs ./src/scripts/sample-script.js", (error, stdout, stderr) => {
-    if ((error && error !== null) || stderr) {
+    if ((error && error !== null)) {
       res.status(200).send(error + stderr);
     } else {
       var result = stdout.split('+++++++++++++++++++++++++++')[1];
