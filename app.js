@@ -9,8 +9,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', function(req, res) {
   exec("casperjs ./src/scripts/sample-script.js", (error, stdout, stderr) => {
-    if (error || stderr) {
-      res.status(200).send(error + stdout);
+    if ((error && error !== null) || stderr) {
+      res.status(200).send(error + stderr);
     } else {
       var result = stdout.split('+++++++++++++++++++++++++++')[1];
       res.status(200).send(JSON.parse(result));
